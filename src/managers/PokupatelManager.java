@@ -7,7 +7,6 @@ package managers;
 
 import entity.Pokupatel;
 import java.util.Scanner;
-import entity.Prodavech;
 
 /**
  *
@@ -15,11 +14,22 @@ import entity.Prodavech;
  */
 public class PokupatelManager {
     private final Scanner scanner = new Scanner(System.in);
-    public void createPokupatel(){
+    public Pokupatel createPokupatel(){
         Pokupatel pokupatel = new Pokupatel();
         System.out.print("Имя: ");
         pokupatel.setFirstname(scanner.nextLine());
         System.out.print("Фамилия: ");
         pokupatel.setLastname(scanner.nextLine());
+        return pokupatel;
+    }
+    
+    public void printListPokupateli(Pokupatel[] pokupateli) {
+        for (int i = 0; i < pokupateli.length; i++) {
+            Pokupatel pokupatel = pokupateli[i];
+            System.out.printf(i+1+".%s %s %s%n"
+                    ,pokupatel.getFirstname()
+                    ,pokupatel.getLastname()
+            );
+        }
     }
 }

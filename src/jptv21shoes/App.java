@@ -6,15 +6,13 @@
 package jptv21shoes;
 
 import entity.Pokupatel;
-import entity.Prodavech;
 import entity.Product;
 import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Scanner;
 import managers.PokupatelManager;
 import managers.ProductManager;
-        
-
+    
 /**
  *
  * @author pupil
@@ -22,18 +20,16 @@ import managers.ProductManager;
 public class App {
     private Product[] products;
     private Pokupatel[] pokupateli;
-    private Prodavech[] prodavchi;
     private final PokupatelManager pokupatelManager;
     private final ProductManager productManager;
-   
+    
     public App() {
     this.products = new Product[0];
     this.pokupateli = new Pokupatel[0];
-    this.prodavchi = new Prodavech[0];
     testAddPokupatel();
-    testAddProduct();
     pokupatelManager = new PokupatelManager();
     productManager = new ProductManager();
+    
 }
     
 public void run() throws ParseException{
@@ -46,7 +42,7 @@ public void run() throws ParseException{
             System.out.println("3. Spisok prodavaemõh produkt");
             System.out.println("4. dobavit pokupatela");
             System.out.println("5. Spisok zaregistrirovannõh pokupatelei");
-            System.out.println("6. Pokupka pokupatelem prodikta");
+            System.out.println("6. Pokupka pokupatelem produkta");
             System.out.println("7. Dohod magazina za vse vrema rabotõ");
             int task = scanner.nextInt();
             scanner.nextLine();
@@ -63,18 +59,19 @@ public void run() throws ParseException{
                     break;
                 case 3:
                     System.out.println("3. Spisok prodavaemõh produktov");
-                    
+                    productManager.printListProducts(products);
                     break;
                 case 4:
                     System.out.println("4. dobavit pokupatela");
-                    
+                    this.pokupateli = Arrays.copyOf(this.pokupateli, this.pokupateli.length+1);
+                    this.pokupateli[this.pokupateli.length-1] = pokupatelManager.createPokupatel();
                     break;
                 case 5:
                     System.out.println("5. Spisok zaregistrirovannõh pokupatelei");
                     
                     break;
                 case 6:
-                    System.out.println("6. Pokupka pokupatelem prodikta");
+                    System.out.println("6. Pokupka pokupatelem produkta");
                     
                     break;
                 case 7:
@@ -85,31 +82,30 @@ public void run() throws ParseException{
             System.out.println("=======================================");
     }while(repeat);
     System.out.println("Пока, ребята!");
-}
-
-    private void testAddProduct() {
-        
-        Product product = new Product();
-        product.setTitle("Product for editing");
-        Prodavech prodavech = new Prodavech();
-        prodavech.setFirstname("firstname");
-        prodavech.setLastname("lastname");
-        Prodavech[] productProdavchi = new Prodavech[1];
-        productProdavchi[0] = prodavech;
-        product.setProdavechi(productProdavchi);
-        this.products = Arrays.copyOf(this.products, this.products.length+1);
-        this.products[this.products.length-1] = product;
     }
-    
+
     private void testAddPokupatel(){
         
-        Pokupatel pokupatel = new Pokupatel("Vlad","Kuznetsov","50304253738");
+        Pokupatel pokupatel = new Pokupatel("Vlad","Kuznetsov");
         this.pokupateli = Arrays.copyOf(this.pokupateli, this.pokupateli.length+1);
         this.pokupateli[this.pokupateli.length-1] = pokupatel;
     }
     
+    private void testAddProduct() {
+        
+        Product product = new Product();
+        product.setTitle("Product for editing");
+        Pokupatel pokupatel = new Pokupatel();
+        pokupatel.setFirstname("Firstname");
+        pokupatel.setLastname("Lastname");
+        Pokupatel[] productPokupateli = new Pokupatel[1];
+        productPokupateli[0] = pokupatel;
+        product.setPokupateli(productPokupateli);
+        this.products = Arrays.copyOf(this.products, this.products.length+1);
+        this.products[this.products.length-1] = product;
+    }
+
 }
 
     
     
-

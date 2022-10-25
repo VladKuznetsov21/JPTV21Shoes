@@ -40,26 +40,15 @@ public class Product {
         this.pokupateli = newPokupateli;
     }
     
-    public void removePokupatel(int numberOfPokupatel){
-        this.getPokupateli()[numberOfPokupatel-1]=null;
-        Pokupatel[] newPokupateli = new Pokupatel[this.getPokupateli().length-1];
-        int j = 0;
-        for (Pokupatel pokupatel : this.getPokupateli()) {
-            if (pokupatel != null) {
-                newPokupateli[j] = pokupatel;
-                j++;
-            }
-        }
-    }
     @Override
     public String toString() {
         return "Product{" 
                 + "title=" + title 
-                + ", okupateli=" + Arrays.toString(pokupateli) 
+                + ", pokupateli=" + Arrays.toString(pokupateli) 
                 + '}';
     }
 
-    public void setProdavechi(Prodavech[] productProdavchi) {
+    public void setPokupateli(Pokupatel[] createPokupateli) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

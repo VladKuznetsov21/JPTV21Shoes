@@ -5,6 +5,7 @@
  */
 package managers;
 
+import entity.Pokupatel;
 import entity.Product;
 import java.util.Scanner;
 
@@ -13,7 +14,6 @@ import java.util.Scanner;
  * @author pupil
  */
 public class ProductManager {
-
     private Scanner scanner;
 
     public ProductManager() {
@@ -22,13 +22,41 @@ public class ProductManager {
     
     public Product createProduct(){
         Product product = new Product();
-        System.out.print("Vvedite nazvanie Producta: ");
+        System.out.print("Введите название продукта: ");
         product.setTitle(scanner.nextLine());
-        System.out.print("Vvedite chislo Product: ");
-        int countProdavchiInProduct = scanner.nextInt();
+        System.out.print("Введите число покупателей: ");
+        int countPokupateliInProduct = scanner.nextInt();
         scanner.nextLine();
-        product.setProdavchi(createProdavchi(countProdavchiInProduct));
+        product.setPokupateli(createPokupateli(countPokupateliInProduct));
         return product;
     }
+   
+    private Pokupatel[] createPokupateli(int countPokupateliInProduct) {
+        Pokupatel[] pokupateli = new Pokupatel[countPokupateliInProduct];
+        for (int i = 0; i < countPokupateliInProduct; i++) {
+            Pokupatel pokupatel = new Pokupatel();
+            System.out.print("Имя покупателя "+(i+1)+": ");
+            pokupatel.setFirstname(scanner.nextLine());
+            System.out.print("Фамилия покупателя "+(i+1)+": ");
+            pokupatel.setLastname(scanner.nextLine());
+            pokupateli[i] = pokupatel;
+        }
+        return pokupateli;
+    }
+    
+   public void printListProducts(Product[] products){
+        for (int i = 0; i < products.length; i++) {
+            Product product = products[i];
+            System.out.printf(i+1+". Product{title = %s%n",product.getTitle());
+            System.out.print("\tPokupateli = [\n");
+            for (int j = 0; j < product.getPokupateli().length; j++) {
+                Pokupatel pokupatel = product.getPokupateli()[j];
+                System.out.printf("\t\t%s %s%n"
+                        ,pokupatel.getFirstname(),pokupatel.getLastname());
+            }
+            System.out.println("\t]");
+        }
+        System.out.println("   }");
+    } 
     
 }

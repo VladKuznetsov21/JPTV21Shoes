@@ -12,19 +12,13 @@ package entity;
 public class Pokupatel {
     private String firstname;
     private String lastname;
-    private String isikukood;
 
     public Pokupatel() {
     }
 
-    public Pokupatel(String firstname, String lastname, String isikukood) {
+    public Pokupatel(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.isikukood = isikukood;
-    }
-
-    public Pokupatel(String vlad, String kuznetsov, String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getFirstname() {
