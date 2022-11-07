@@ -51,4 +51,6 @@ public class Product {
     public void setPokupateli(Pokupatel[] createPokupateli) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
 }
