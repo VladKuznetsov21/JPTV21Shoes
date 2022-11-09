@@ -12,13 +12,18 @@ package entity;
 public class Pokupatel {
     private String firstname;
     private String lastname;
+    private String phone;
+    private String money;
 
     public Pokupatel() {
     }
 
-    public Pokupatel(String firstname, String lastname) {
+    public Pokupatel(String firstname, String lastname, String phone, String money) {
         this.firstname = firstname;
         this.lastname = lastname;
+        this.phone = phone;
+        this.money = money;
+        
     }
 
     public String getFirstname() {
@@ -37,11 +42,29 @@ public class Pokupatel {
         this.lastname = lastname;
     }
     
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    
+    public String getMoney() {
+        return money;
+    }
+
+    public void setmoney(String money) {
+        this.money = money;
+    }
+    
     @Override
     public String toString() {
         return "Pokupatel{" 
                 + "firstname=" + firstname 
                 + ", lastname=" + lastname 
+                + ", phone=" + phone
+                + ", money=" + money
                 + '}';
     }
 

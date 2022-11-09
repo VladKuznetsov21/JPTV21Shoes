@@ -20,6 +20,8 @@ public class PokupatelManager {
         pokupatel.setFirstname(scanner.nextLine());
         System.out.print("Фамилия: ");
         pokupatel.setLastname(scanner.nextLine());
+        System.out.print("Телефон покупателя: ");
+        pokupatel.setPhone(scanner.nextLine());
         return pokupatel;
     }
     

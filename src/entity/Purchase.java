@@ -15,6 +15,7 @@ public class Purchase {
     private Pokupatel pokupatel;
     private Product product;
     private Date takeOnProduct;
+    private int quantity;
 
 
     public Purchase() {
@@ -44,6 +45,7 @@ public class Purchase {
         this.takeOnProduct = takeOnProduct;
     }
  
+    
     @Override
     public String toString() {
         return "Purchase{" 
@@ -52,4 +54,15 @@ public class Purchase {
                 + ", takeOnProduct=" + takeOnProduct
                 + '}';
     }
+
+    public void setReader(Pokupatel pokupatel) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object getReturnProduct() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+
 }

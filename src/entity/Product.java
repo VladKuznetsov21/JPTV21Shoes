@@ -12,45 +12,62 @@ import java.util.Arrays;
  * @author pupil
  */
 public class Product {
-    private String title;
-    private Pokupatel[] pokupateli;
+    private String name;
+    private String price;
+    private String quantity;
+    private String fabricator;
 
     public Product() {
     }
-
-    public String getTitle() {
-        return title;
+    
+    public Product(String name, String price, String quantity, String fabricator) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.fabricator = fabricator;
+        
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getName() {
+        return name;
     }
 
-    public Pokupatel[] getPokupateli() {
-        return pokupateli;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setAuthors(Pokupatel[] pokupateli) {
-        this.pokupateli = pokupateli;
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
     
-    public void addPokupatel(Pokupatel pokupatel){
-        Pokupatel[] newPokupateli = Arrays.copyOf(pokupateli, pokupateli.length+1);
-        newPokupateli[newPokupateli.length-1] = pokupatel;
-        this.pokupateli = newPokupateli;
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+    
+    public String getFabricator() {
+        return fabricator;
+    }
+
+    public void setFabricator(String fabricator) {
+        this.fabricator = fabricator;
     }
     
     @Override
     public String toString() {
         return "Product{" 
-                + "title=" + title 
-                + ", pokupateli=" + Arrays.toString(pokupateli) 
+                + "name=" + name 
+                + "price=" + price
+                + "quantity=" + quantity
+                + "fabricator=" + fabricator
                 + '}';
     }
-
-    public void setPokupateli(Pokupatel[] createPokupateli) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 
 }

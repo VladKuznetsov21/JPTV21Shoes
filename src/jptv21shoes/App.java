@@ -7,11 +7,13 @@ package jptv21shoes;
 
 import entity.Pokupatel;
 import entity.Product;
+import entity.Purchase;
 import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Scanner;
 import managers.PokupatelManager;
 import managers.ProductManager;
+import managers.PurchaseManager;
     
 /**
  *
@@ -20,14 +22,18 @@ import managers.ProductManager;
 public class App {
     private Product[] products;
     private Pokupatel[] pokupateli;
+    private Purchase[] purchase;
     private final PokupatelManager pokupatelManager;
+    private final PurchaseManager purchaseManager;
     private final ProductManager productManager;
     
     public App() {
     this.products = new Product[0];
     this.pokupateli = new Pokupatel[0];
+    this.purchase = new Purchase[0];
     pokupatelManager = new PokupatelManager();
     productManager = new ProductManager();
+    purchaseManager = new PurchaseManager();
     
 }
     
@@ -36,50 +42,53 @@ public void run() throws ParseException{
         Scanner scanner = new Scanner(System.in);
         do{
             System.out.println("Список задач: ");
-            System.out.println("1. Võhod iz programmõ");
-            System.out.println("2. Dobavit produkt");
-            System.out.println("3. Spisok prodavaemõh produkt");
-            System.out.println("4. Dobavit pokupatela");
-            System.out.println("5. Spisok zaregistrirovannõh pokupatelei");
-            System.out.println("6. Pokupka pokupatelem produkta");
-            System.out.println("7. Dohod magazina za vse vrema rabotõ");
-            System.out.println("8. Dobavit deneg pokupately");
+            System.out.println("1. Выход из программы");
+            System.out.println("2. Добавить продукт");
+            System.out.println("3. Список продаваемых продуктов");
+            System.out.println("4. Добавить покупателя");
+            System.out.println("5. Список зарегистрированных покупателей");
+            System.out.println("6. Покупка покупателем продукта");
+            System.out.println("7. Оборот магазина за все время работы");
+            System.out.println("8. Добавить денег покупателю");
             int task = scanner.nextInt();
             scanner.nextLine();
             System.out.println("=====================================");
             switch (task) {
                 case 1:
                     repeat = false;
-                    System.out.println("1. Võhod iz programmõ");
+                    System.out.println("1. Выход из программы");
                     break;
                 case 2:
-                    System.out.println("2. Dobavit produkt");
+                    System.out.println("2. Добавить продукт");
+                    // Добавляет продукт в список товароы маагзина 
                     this.products = Arrays.copyOf(this.products, this.products.length+1);
                     this.products[this.products.length-1] = productManager.createProduct();
                     break;
                 case 3:
-                    System.out.println("3. Spisok prodavaemõh produktov");
+                    System.out.println("3. Список продаваемых продуктов");
+                    // Показывает список проданных товаров покупателю
                     productManager.printListProducts(products);
                     break;
                 case 4:
-                    System.out.println("4. dobavit pokupatela");
+                    System.out.println("4. Добавить покупателя");
+                    // Добавляет покупателя купившего продукт в списке магазина
                     this.pokupateli = Arrays.copyOf(this.pokupateli, this.pokupateli.length+1);
                     this.pokupateli[this.pokupateli.length-1] = pokupatelManager.createPokupatel();
                     break;
                 case 5:
-                    System.out.println("5. Spisok zaregistrirovannõh pokupatelei");
-                    
+                    System.out.println("5. Список зарегистрированных покупателей");
+                    // Показывает прокупателей купивших тот или иной товар
                     break;
                 case 6:
-                    System.out.println("6. Pokupka pokupatelem produkta");
-                    
+                    System.out.println("6. Покупка покупателем продукта");
+                    // Покупатель покупает товар и с его счёта вычетаются денги
                     break;
                 case 7:
-                    System.out.println("7. Dohod magazina za vse vrema rabotõ");
+                    System.out.println("7. Оборот магазина за все время работы");
                     
                     break;
                 case 8:
-                    System.out.println("8. Dobavit deneg pokupately");
+                    System.out.println("8. Добавить денег покупателю");
                     
                     break;
             }
