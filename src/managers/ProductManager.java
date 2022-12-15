@@ -32,8 +32,5 @@ public class ProductManager {
         product.setFabricator(scanner.nextLine());
         return product;
     }
-
-    public void printListProducts(Product[] products){
-        for (int i = 0; i < products.length; i++) {
-            Product product = products[i];
+}
             

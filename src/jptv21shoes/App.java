@@ -37,7 +37,7 @@ public class App {
     
 }
     
-public void run() throws ParseException{
+    public void run(){
         boolean repeat = true;
         Scanner scanner = new Scanner(System.in);
         do{
@@ -50,6 +50,7 @@ public void run() throws ParseException{
             System.out.println("6. Покупка покупателем продукта");
             System.out.println("7. Оборот магазина за все время работы");
             System.out.println("8. Добавить денег покупателю");
+            System.out.print("Выберите задачу из списка: ");
             int task = scanner.nextInt();
             scanner.nextLine();
             System.out.println("=====================================");
@@ -93,8 +94,8 @@ public void run() throws ParseException{
                     break;
             }
             System.out.println("=======================================");
-    }while(repeat);
-    System.out.println("Пока, ребята!");
+        }while(repeat);
+        System.out.println("Пока, ребята!");
     }
 
 }

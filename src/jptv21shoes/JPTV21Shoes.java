@@ -5,14 +5,13 @@
  */
 package jptv21shoes;
 
-import java.text.ParseException;
 
 /**
  *
  * @author pupil
  */
 public class JPTV21Shoes {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args){
         App app = new App();
         app.run();
     }
