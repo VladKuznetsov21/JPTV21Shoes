@@ -22,6 +22,8 @@ public class PokupatelManager {
         pokupatel.setLastname(scanner.nextLine());
         System.out.print("Телефон покупателя: ");
         pokupatel.setPhone(scanner.nextLine());
+        System.out.print("Деньги: ");
+        pokupatel.setMoney(scanner.nextLine());
         return pokupatel;
     }
     
@@ -31,7 +33,20 @@ public class PokupatelManager {
             System.out.printf(i+1+".%s %s %s%n"
                     ,pokupatel.getFirstname()
                     ,pokupatel.getLastname()
+                    ,pokupatel.getPhone()
             );
         }
     }
+    
+    public Pokupatel[] AddMoneyPokupatel(Pokupatel[] pokupateli){
+        System.out.println("Список покупателей");
+        printListPokupateli(pokupateli);
+        System.out.print("Добавить денег покупателю номер: ");
+        int numberPokupatel = scanner.nextInt();scanner.nextLine();
+        System.out.println("Введите количество денег: ");
+        pokupateli[numberPokupatel - 1].setMoney(scanner.nextLine());
+        
+        return pokupateli;
+    }    
+    
 }

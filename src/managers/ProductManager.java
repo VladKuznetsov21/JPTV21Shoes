@@ -28,9 +28,13 @@ public class ProductManager {
         product.setPrice(scanner.nextLine());
         System.out.print("Введите колличество продукта: ");
         product.setQuantity(scanner.nextLine());
-        System.out.print("Введите марку продукта: ");
+        System.out.print("Введите производителя продукта: ");
         product.setFabricator(scanner.nextLine());
         return product;
+    }
+
+    public void printListProducts(Product[] products) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
             

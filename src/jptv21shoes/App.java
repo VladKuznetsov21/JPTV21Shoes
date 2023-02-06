@@ -90,7 +90,7 @@ public class App {
                     break;
                 case 8:
                     System.out.println("8. Добавить денег покупателю");
-                    
+                    this.pokupateli = pokupatelManager.AddMoneyPokupatel(pokupateli);
                     break;
             }
             System.out.println("=======================================");

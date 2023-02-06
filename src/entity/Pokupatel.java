@@ -54,8 +54,11 @@ public class Pokupatel {
         return money;
     }
 
-    public void setmoney(String money) {
-        this.money = money;
+    public void setMoney(String money) {
+        int intMoney = Integer.parseInt(money);
+        Integer fieldMoney = Integer.parseInt(this.money);
+        fieldMoney += intMoney;
+        this.money = fieldMoney.toString();
     }
     
     @Override
