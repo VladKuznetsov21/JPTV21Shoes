@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class PurchaseManager {
     private final Scanner scanner = new Scanner(System.in);
     
-    public Purchase takeOnBook(Product[] products,Pokupatel[] pokupateli){
+    public Purchase buyProduct(Product[] products,Pokupatel[] pokupateli){
         Purchase purchase = new Purchase();
         System.out.println("Список покупателей: ");
         PokupatelManager pokupatelManager = new PokupatelManager();
@@ -33,9 +33,13 @@ public class PurchaseManager {
         System.out.print("Выберите номер продукта из списка: ");
         int numberProduct = scanner.nextInt(); scanner.nextLine();
         
+        System.out.print("Выберите колличество продукта: ");
+        int quantity = scanner.nextInt(); scanner.nextLine();
+        
         purchase.setProduct(products[numberProduct - 1]);
-        purchase.setReader(pokupateli[numberPokupatel - 1]);
-        purchase.setTakeOnProduct(new GregorianCalendar().getTime());
+        purchase.setPokupatel(pokupateli[numberPokupatel - 1]);
+        purchase.setQuantity(quantity);
+        purchase.setDate(new GregorianCalendar().getTime());
         return purchase;
     }
 
@@ -44,7 +48,7 @@ public class PurchaseManager {
         for (int i = 0; i < purchases.length; i++) {
             if(purchases[i].getReturnProduct() == null && purchases[i].getTakeOnProduct() != null){
                 try {
-                    System.out.printf("%d. %s. Выдана: %s. Книгу читает: %s %s%n"
+                    System.out.printf("%d. %s. Выдана: %s. Продукт взят: %s %s%n"
                         ,i+1
                         ,purchases[i].getProduct().getName()
                         ,sdf.format(purchases[i].getTakeOnProduct())

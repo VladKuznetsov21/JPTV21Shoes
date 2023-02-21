@@ -51,8 +51,7 @@ public class App {
             System.out.println("7. Оборот магазина за все время работы");
             System.out.println("8. Добавить денег покупателю");
             System.out.print("Выберите задачу из списка: ");
-            int task = scanner.nextInt();
-            scanner.nextLine();
+            int task = scanner.nextInt(); scanner.nextLine();
             System.out.println("=====================================");
             switch (task) {
                 case 1:
@@ -79,10 +78,13 @@ public class App {
                 case 5:
                     System.out.println("5. Список зарегистрированных покупателей");
                     // Показывает прокупателей купивших тот или иной товар
+                    pokupatelManager.printListPokupateli(pokupateli);
                     break;
                 case 6:
                     System.out.println("6. Покупка покупателем продукта");
                     // Покупатель покупает товар и с его счёта вычетаются денги
+                    this.purchase = Arrays.copyOf(this.purchase, this.purchase.length + 1);
+                    this.purchase[this.purchase.length - 1] = purchaseManager.buyProduct(products, pokupateli);
                     break;
                 case 7:
                     System.out.println("7. Оборот магазина за все время работы");

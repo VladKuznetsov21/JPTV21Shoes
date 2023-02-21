@@ -14,7 +14,9 @@ import java.util.Date;
 public class Purchase {
     private Pokupatel pokupatel;
     private Product product;
-    private Date takeOnProduct;
+    private Date date;
+    private Date TakeOnProduct;
+    private Date ReturnProduct;
     private int quantity;
 
 
@@ -37,32 +39,53 @@ public class Purchase {
         this.pokupatel = pokupatel;
     }
 
-    public Date getTakeOnProduct() {
-        return takeOnProduct;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTakeOnProduct(Date takeOnProduct) {
-        this.takeOnProduct = takeOnProduct;
+    public void setDate(Date date) {
+        this.date = date;
     }
- 
+
+    public Date getTakeOnProduct() {
+        return TakeOnProduct;
+    }
+
+    public void setTakeOnProduct(Date TakeOnProduct) {
+        this.TakeOnProduct = TakeOnProduct;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
     
+
     @Override
     public String toString() {
         return "Purchase{" 
-                + "product=" + product
-                + ", pokupatel=" + pokupatel 
-                + ", takeOnProduct=" + takeOnProduct
+                + "pokupatel=" + pokupatel 
+                + ", product=" + product 
+                + ", date=" + date 
+                + ", TakeOnProduct=" + TakeOnProduct 
+                + ", quantity=" + quantity 
                 + '}';
     }
 
-    public void setReader(Pokupatel pokupatel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Date getReturnProduct() {
+        return ReturnProduct;
     }
 
-    public Object getReturnProduct() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setReturnProduct(Date ReturnProduct) {
+        this.ReturnProduct = ReturnProduct;
     }
 
-
+ 
+    
+    
+    
 
 }

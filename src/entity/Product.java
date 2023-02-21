@@ -14,6 +14,9 @@ public class Product {
     private String price;
     private String quantity;
     private String fabricator;
+    private String title;
+    private Pokupatel[] pokupateli;
+    private int count;
 
     public Product() {
     }
@@ -26,6 +29,22 @@ public class Product {
         
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Pokupatel[] getPokupateli() {
+        return pokupateli;
+    }
+
+    public void setPokupateli(Pokupatel[] pokupateli) {
+        this.pokupateli = pokupateli;
+    }
+    
     public String getName() {
         return name;
     }
@@ -57,15 +76,31 @@ public class Product {
     public void setFabricator(String fabricator) {
         this.fabricator = fabricator;
     }
-    
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     @Override
     public String toString() {
         return "Product{" 
                 + "name=" + name 
-                + "price=" + price
-                + "quantity=" + quantity
-                + "fabricator=" + fabricator
-                + '}';
+                + ", price=" + price 
+                + ", quantity=" + quantity 
+                + ", fabricator=" + fabricator 
+                + ", title=" + title 
+                + ", pokupateli=" + pokupateli 
+                + ", count=" + count + '}';
     }
+
+    public Object getPokupatel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 
 }
