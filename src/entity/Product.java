@@ -5,6 +5,8 @@
  */
 package entity;
 
+import java.util.Arrays;
+
 /**
  *
  * @author pupil
@@ -12,30 +14,25 @@ package entity;
 public class Product {
     private String name;
     private String price;
-    private String quantity;
     private String fabricator;
-    private String title;
     private Pokupatel[] pokupateli;
+    private int quantity;
     private int count;
+    private int length;
 
     public Product() {
     }
-    
-    public Product(String name, String price, String quantity, String fabricator) {
+
+    public Product(String name, String price, String fabricator, Pokupatel[] pokupateli, int quantity, int count, int length) {
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
         this.fabricator = fabricator;
-        
+        this.pokupateli = pokupateli;
+        this.quantity = quantity;
+        this.count = count;
+        this.length = length;
     }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
+           
 
     public Pokupatel[] getPokupateli() {
         return pokupateli;
@@ -60,15 +57,6 @@ public class Product {
     public void setPrice(String price) {
         this.price = price;
     }
-    
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-    
     public String getFabricator() {
         return fabricator;
     }
@@ -76,13 +64,53 @@ public class Product {
     public void setFabricator(String fabricator) {
         this.fabricator = fabricator;
     }
+    
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+        this.count = quantity;
+    }
 
     public int getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public  void setCount(int count) {
         this.count = count;
+    }
+    public boolean countPluss(){
+        if(count < quantity){
+            count++;
+            return true;
+        }
+        return false;
+    }
+    public boolean countMinuss(){
+        if(count > 0){
+            count--;
+            return true;
+        }
+        return false;
+    }
+
+    public void quantityPluss(int number) {
+        quantity += number;
+        count += number;
+    }
+
+    public void quantityMinus(int number) {
+        quantity -= number;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
     }
 
     @Override
@@ -90,16 +118,20 @@ public class Product {
         return "Product{" 
                 + "name=" + name 
                 + ", price=" + price 
-                + ", quantity=" + quantity 
                 + ", fabricator=" + fabricator 
-                + ", title=" + title 
-                + ", pokupateli=" + pokupateli 
-                + ", count=" + count + '}';
+                + ", pokupateli=" + Arrays.toString(pokupateli)
+                + ", quantity=" + quantity 
+                + ", count=" + count 
+                + ", length=" + length 
+                + '}';
     }
+    
+    
+    
 
-    public Object getPokupatel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+
+  
     
     
 

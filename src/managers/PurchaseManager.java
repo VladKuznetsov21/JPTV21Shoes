@@ -5,6 +5,7 @@
  */
 package managers;
 
+import entity.Market;
 import entity.Pokupatel;
 import entity.Product;
 import entity.Purchase;
@@ -64,5 +65,13 @@ public class PurchaseManager {
                 
             }
         }
+    }
+    public void marketCashList(Purchase[] purchases) {
+        int sum = 0;
+        for(int i = 0; i < purchases.length; i++){
+            Purchase purchase = purchases[i];
+            sum = sum + Integer.parseInt(purchase.getProduct().getPrice()) * purchase.getQuantity();
+        } 
+        System.out.println("Оборот: "+sum);
     }
 }

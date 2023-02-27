@@ -5,10 +5,10 @@
  */
 package jptv21shoes;
 
+import entity.Market;
 import entity.Pokupatel;
 import entity.Product;
 import entity.Purchase;
-import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Scanner;
 import managers.PokupatelManager;
@@ -23,9 +23,11 @@ public class App {
     private Product[] products;
     private Pokupatel[] pokupateli;
     private Purchase[] purchase;
+    private Market[] markets;
     private final PokupatelManager pokupatelManager;
     private final PurchaseManager purchaseManager;
     private final ProductManager productManager;
+
     
     public App() {
     this.products = new Product[0];
@@ -34,7 +36,7 @@ public class App {
     pokupatelManager = new PokupatelManager();
     productManager = new ProductManager();
     purchaseManager = new PurchaseManager();
-    
+   
 }
     
     public void run(){
@@ -88,7 +90,7 @@ public class App {
                     break;
                 case 7:
                     System.out.println("7. Оборот магазина за все время работы");
-                    
+                    purchaseManager.marketCashList(purchase);
                     break;
                 case 8:
                     System.out.println("8. Добавить денег покупателю");

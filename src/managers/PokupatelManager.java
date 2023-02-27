@@ -20,20 +20,22 @@ public class PokupatelManager {
         pokupatel.setFirstname(scanner.nextLine());
         System.out.print("Фамилия: ");
         pokupatel.setLastname(scanner.nextLine());
-        System.out.print("Телефон покупателя: ");
+        System.out.print("Телефон: ");
         pokupatel.setPhone(scanner.nextLine());
-        System.out.print("Деньги: ");
-        pokupatel.setMoney(scanner.nextLine());
+        //System.out.print("Деньги: ");
+        //pokupatel.setMoney(scanner.nextLine());
         return pokupatel;
     }
     
     public void printListPokupateli(Pokupatel[] pokupateli) {
         for (int i = 0; i < pokupateli.length; i++) {
             Pokupatel pokupatel = pokupateli[i];
-            System.out.printf(i+1+".%s %s %s%n"
+            System.out.printf(i+1+".%s %s %s %s%n"
                     ,pokupatel.getFirstname()
                     ,pokupatel.getLastname()
                     ,pokupatel.getPhone()
+                    ,pokupatel.getMoney()
+                    
             );
         }
     }
