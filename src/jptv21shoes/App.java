@@ -11,6 +11,7 @@ import entity.Product;
 import entity.Purchase;
 import java.util.Arrays;
 import java.util.Scanner;
+import managers.DataManager;
 import managers.PokupatelManager;
 import managers.ProductManager;
 import managers.PurchaseManager;
@@ -27,12 +28,17 @@ public class App {
     private final PokupatelManager pokupatelManager;
     private final PurchaseManager purchaseManager;
     private final ProductManager productManager;
+    private final DataManager dataManager;
 
     
     public App() {
+    dataManager = new DataManager();
     this.products = new Product[0];
+    this.products = dataManager.loadproducts();
     this.pokupateli = new Pokupatel[0];
+    this.pokupateli = dataManager.loadPokupateli();
     this.purchase = new Purchase[0];
+    this.purchase = dataManager.loadPurchases();
     pokupatelManager = new PokupatelManager();
     productManager = new ProductManager();
     purchaseManager = new PurchaseManager();
@@ -54,7 +60,7 @@ public class App {
             System.out.println("8. Добавить денег покупателю");
             System.out.print("Выберите задачу из списка: ");
             int task = scanner.nextInt(); scanner.nextLine();
-            System.out.println("=====================================");
+            System.out.println("=======================================");
             switch (task) {
                 case 1:
                     repeat = false;
@@ -65,6 +71,9 @@ public class App {
                     // Добавляет продукт в список товароы маагзина 
                     this.products = Arrays.copyOf(this.products, this.products.length+1);
                     this.products[this.products.length-1] = productManager.createProduct();
+                    
+                    
+                    dataManager.saveProducs(this.products);
                     break;
                 case 3:
                     System.out.println("3. Список продаваемых продуктов");

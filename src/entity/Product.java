@@ -5,14 +5,27 @@
  */
 package entity;
 
+
+import java.io.Serializable;
 import java.util.Arrays;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 
 /**
  *
  * @author pupil
  */
-public class Product {
+@Entity
+public class Product implements Serializable {
+    @Id @GeneratedValue(strategy = IDENTITY)
+    private Long id;
     private String name;
+    @OneToMany(cascade = {CascadeType.PERSIST})
     private String price;
     private String fabricator;
     private Pokupatel[] pokupateli;
@@ -124,6 +137,14 @@ public class Product {
                 + ", count=" + count 
                 + ", length=" + length 
                 + '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
     
     

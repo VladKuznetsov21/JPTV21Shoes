@@ -22,8 +22,8 @@ public class PokupatelManager {
         pokupatel.setLastname(scanner.nextLine());
         System.out.print("Телефон: ");
         pokupatel.setPhone(scanner.nextLine());
-        //System.out.print("Деньги: ");
-        //pokupatel.setMoney(scanner.nextLine());
+        System.out.print("Деньги: ");
+        pokupatel.setMoney(scanner.nextLine());
         return pokupatel;
     }
     

@@ -5,11 +5,19 @@
  */
 package entity;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+
 /**
  *
  * @author pupil
  */
-public class Pokupatel {
+@Entity
+public class Pokupatel implements Serializable {
+    @Id
+    private Long id;
     private String firstname;
     private String lastname;
     private String phone;
@@ -53,10 +61,10 @@ public class Pokupatel {
     public String getMoney() {
         return money;
     }
-
+   
     public void setMoney(String money) {
         int intMoney = Integer.parseInt(money);
-        Integer fieldMoney = Integer.parseInt(this.money);
+        Integer fieldMoney = Integer.parseInt(money);
         fieldMoney += intMoney;
         this.money = fieldMoney.toString();
     }
@@ -70,6 +78,16 @@ public class Pokupatel {
                 + ", money=" + money
                 + '}';
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    
 
 }
 

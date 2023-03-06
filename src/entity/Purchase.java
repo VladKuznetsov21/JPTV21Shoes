@@ -5,13 +5,18 @@
  */
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author pupil
  */
-public class Purchase {
+@Entity
+public class Purchase implements Serializable{
+    @Id
     private Pokupatel pokupatel;
     private Product product;
     private Date date;
@@ -63,6 +68,13 @@ public class Purchase {
         this.quantity = quantity;
     }
     
+    public Date getReturnProduct() {
+        return ReturnProduct;
+    }
+
+    public void setReturnProduct(Date ReturnProduct) {
+        this.ReturnProduct = ReturnProduct;
+    }
 
     @Override
     public String toString() {
@@ -75,13 +87,7 @@ public class Purchase {
                 + '}';
     }
 
-    public Date getReturnProduct() {
-        return ReturnProduct;
-    }
-
-    public void setReturnProduct(Date ReturnProduct) {
-        this.ReturnProduct = ReturnProduct;
-    }
+    
 
  
     
