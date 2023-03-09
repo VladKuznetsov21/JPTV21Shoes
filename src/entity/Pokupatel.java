@@ -71,15 +71,6 @@ public class Pokupatel implements Serializable {
         this.money = fieldMoney.toString();
     }
     
-    @Override
-    public String toString() {
-        return "Pokupatel{" 
-                + "firstname=" + firstname 
-                + ", lastname=" + lastname 
-                + ", phone=" + phone
-                + ", money=" + money
-                + '}';
-    }
 
     public Long getId() {
         return id;
@@ -87,6 +78,17 @@ public class Pokupatel implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Pokupatel{" 
+                + "id=" + id 
+                + ", firstname=" + firstname 
+                + ", lastname=" + lastname 
+                + ", phone=" + phone 
+                + ", money=" + money 
+                + '}';
     }
 
     
