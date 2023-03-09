@@ -8,6 +8,8 @@ package entity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 
 /**
@@ -16,7 +18,8 @@ import javax.persistence.Id;
  */
 @Entity
 public class Purchase implements Serializable{
-    @Id
+    @Id @GeneratedValue(strategy = IDENTITY)
+    private Long id;
     private Pokupatel pokupatel;
     private Product product;
     private Date date;
@@ -76,22 +79,25 @@ public class Purchase implements Serializable{
         this.ReturnProduct = ReturnProduct;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Purchase{" 
-                + "pokupatel=" + pokupatel 
+                + "id=" + id 
+                + ", pokupatel=" + pokupatel 
                 + ", product=" + product 
                 + ", date=" + date 
                 + ", TakeOnProduct=" + TakeOnProduct 
+                + ", ReturnProduct=" + ReturnProduct 
                 + ", quantity=" + quantity 
                 + '}';
     }
-
-    
-
- 
-    
-    
-    
 
 }

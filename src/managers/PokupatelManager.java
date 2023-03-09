@@ -7,6 +7,10 @@ package managers;
 
 import entity.Pokupatel;
 import java.util.Scanner;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -24,6 +28,12 @@ public class PokupatelManager {
         pokupatel.setPhone(scanner.nextLine());
         System.out.print("Деньги: ");
         pokupatel.setMoney(scanner.nextLine());
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPTV21Shoes_KuznetsovPU");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+            em.persist(pokupatel);
+        tx.commit();
         return pokupatel;
     }
     

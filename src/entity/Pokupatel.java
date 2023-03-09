@@ -7,6 +7,8 @@ package entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 
 
@@ -16,7 +18,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Pokupatel implements Serializable {
-    @Id
+    @Id @GeneratedValue(strategy = IDENTITY)
     private Long id;
     private String firstname;
     private String lastname;
