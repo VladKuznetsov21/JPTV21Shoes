@@ -14,6 +14,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,9 +24,14 @@ import java.util.logging.Logger;
  * @author pupil
  */
 public class DataManager {
-    public void saveProducs(Product[] products){
+    
+    private final String PRODUCTS_FILE = "MyProducts";
+    private final String POKUPATELI_FILE = "MyPokupateli";
+    private final String PURCHASES_FILE = "MyPurchases";
+    
+    public void saveProducs(List<Product> products){
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("MyProducts");
+            FileOutputStream fileOutputStream = new FileOutputStream(PRODUCTS_FILE);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(products);
             objectOutputStream.flush();
@@ -35,12 +42,12 @@ public class DataManager {
         }
     }
     
-    public Product[] loadproducts() {
-        Product[] products = new Product[0];
+    public List<Product> loadproducts() {
+        List<Product> products = new ArrayList<>();
         try {
-            FileInputStream fileInputStream = new FileInputStream("MyProducts");
+            FileInputStream fileInputStream = new FileInputStream(PRODUCTS_FILE);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            products = (Product[]) objectInputStream.readObject();
+            products = (List<Product>) objectInputStream.readObject();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE,"Нет файла MyProducts", ex);
         } catch (IOException ex) {
@@ -51,9 +58,9 @@ public class DataManager {
         return products;
     }
     
-     public void savePokupateli(Pokupatel[] pokupateli) {
+     public void savePokupateli(List<Pokupatel> pokupateli) {
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("MyPokupateli");
+            FileOutputStream fileOutputStream = new FileOutputStream(POKUPATELI_FILE);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(pokupateli);
             objectOutputStream.flush();
@@ -64,12 +71,12 @@ public class DataManager {
         }
     }
 
-    public Pokupatel[] loadPokupateli() {
-        Pokupatel[] pokupateli = new Pokupatel[0];
+    public List<Pokupatel> loadPokupateli() {
+        List<Pokupatel> pokupateli = new ArrayList<>();
         try {
-            FileInputStream fileInputStream = new FileInputStream("MyPokupateli");
+            FileInputStream fileInputStream = new FileInputStream(POKUPATELI_FILE);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            pokupateli = (Pokupatel[]) objectInputStream.readObject();
+            pokupateli = (List<Pokupatel>) objectInputStream.readObject();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE,"Нет файла MyPokupateli", ex);
         } catch (IOException ex) {
@@ -81,9 +88,9 @@ public class DataManager {
     }
 
 
-    public void savePurchases(Purchase[] purchases) {
+    public void savePurchases(List<Purchase> purchases) {
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("MyPurchases");
+            FileOutputStream fileOutputStream = new FileOutputStream(PURCHASES_FILE);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(purchases);
             objectOutputStream.flush();
@@ -94,12 +101,12 @@ public class DataManager {
         }
     }
     
-    public Purchase[] loadPurchases() {
-        Purchase[] purchases = new Purchase[0];
+    public List<Purchase> loadPurchases() {
+        List<Purchase> purchases = new ArrayList<>();
         try {
-            FileInputStream fileInputStream = new FileInputStream("MyPurchases");
+            FileInputStream fileInputStream = new FileInputStream(PURCHASES_FILE);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            purchases = (Purchase[]) objectInputStream.readObject();
+            purchases = (List<Purchase>) objectInputStream.readObject();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE,"Нет файла MyPurchases", ex);
         } catch (IOException ex) {

@@ -10,7 +10,10 @@ import entity.Pokupatel;
 import entity.Product;
 import entity.Purchase;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import static javafx.beans.binding.Bindings.length;
+import static jdk.nashorn.internal.objects.ArrayBufferView.length;
 import managers.DataManager;
 import managers.PokupatelManager;
 import managers.ProductManager;
@@ -21,9 +24,12 @@ import managers.PurchaseManager;
  * @author pupil
  */
 public class App {
-    private Product[] products;
-    private Pokupatel[] pokupateli;
-    private Purchase[] purchase;
+    //private Product[] products;
+    private List<Product> products;
+    //private Pokupatel[] pokupateli;
+    private List<Pokupatel> pokupateli;
+    //private Purchase[] purchase;
+    private List<Purchase> purchases;
     private Market[] markets;
     private final PokupatelManager pokupatelManager;
     private final PurchaseManager purchaseManager;
@@ -32,13 +38,10 @@ public class App {
 
     
     public App() {
-    dataManager = new DataManager();
-    this.products = new Product[0];
+    dataManager = new DataManager();  
     this.products = dataManager.loadproducts();
-    this.pokupateli = new Pokupatel[0];
     this.pokupateli = dataManager.loadPokupateli();
-    this.purchase = new Purchase[0];
-    this.purchase = dataManager.loadPurchases();
+    this.purchases = dataManager.loadPurchases();
     pokupatelManager = new PokupatelManager();
     productManager = new ProductManager();
     purchaseManager = new PurchaseManager();
@@ -69,11 +72,11 @@ public class App {
                 case 2:
                     System.out.println("2. Добавить продукт");
                     // Добавляет продукт в список товароы маагзина 
-                    this.products = Arrays.copyOf(this.products, this.products.length+1);
-                    this.products[this.products.length-1] = productManager.createProduct();
+                    //this.products = Arrays.copyOf(this.products, this.products.length + 1);
+                    //this.products[this.products.length-1] = productManager.createProduct();
                     
-                    
-                    dataManager.saveProducs(this.products);
+                    products.add(productManager.createProduct());
+                    dataManager.saveProducs(products);
                     break;
                 case 3:
                     System.out.println("3. Список продаваемых продуктов");
@@ -83,8 +86,11 @@ public class App {
                 case 4:
                     System.out.println("4. Добавить покупателя");
                     // Добавляет покупателя купившего продукт в списке магазина
-                    this.pokupateli = Arrays.copyOf(this.pokupateli, this.pokupateli.length+1);
-                    this.pokupateli[this.pokupateli.length-1] = pokupatelManager.createPokupatel();
+                    //this.pokupateli = Arrays.copyOf(this.pokupateli, this.pokupateli.length + 1);
+                    //this.pokupateli[this.pokupateli.length - 1] = pokupatelManager.createPokupatel();
+                    
+                    pokupateli.add(pokupatelManager.createPokupatel());
+                    dataManager.savePokupateli(pokupateli);
                     break;
                 case 5:
                     System.out.println("5. Список зарегистрированных покупателей");
@@ -94,12 +100,15 @@ public class App {
                 case 6:
                     System.out.println("6. Покупка покупателем продукта");
                     // Покупатель покупает товар и с его счёта вычетаются денги
-                    this.purchase = Arrays.copyOf(this.purchase, this.purchase.length + 1);
-                    this.purchase[this.purchase.length - 1] = purchaseManager.buyProduct(products, pokupateli);
+                    //purchases = Arrays.copyOf(this.purchases, this.purchases.length + 1);
+                    //this.purchases(this.purchases.length - 1) = purchaseManager.buyProduct(products, pokupateli);
+                    
+                    this.purchases.add(purchaseManager.buyProduct(products, pokupateli));
+                    dataManager.savePurchases(purchases);
                     break;
                 case 7:
                     System.out.println("7. Оборот магазина за все время работы");
-                    purchaseManager.marketCashList(purchase);
+                    purchaseManager.marketCashList(purchases);
                     break;
                 case 8:
                     System.out.println("8. Добавить денег покупателю");

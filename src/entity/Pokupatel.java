@@ -28,14 +28,6 @@ public class Pokupatel implements Serializable {
     public Pokupatel() {
     }
 
-    public Pokupatel(String firstname, String lastname, String phone, String money) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.phone = phone;
-        this.money = money;
-        
-    }
-
     public String getFirstname() {
         return firstname;
     }

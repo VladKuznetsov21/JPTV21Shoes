@@ -8,6 +8,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,30 +29,19 @@ public class Product implements Serializable {
     @OneToMany(cascade = {CascadeType.PERSIST})
     private String price;
     private String fabricator;
-    private Pokupatel[] pokupateli;
+    private List<Pokupatel> pokupateli;
     private int quantity;
     private int count;
     private int length;
 
     public Product() {
     }
-
-    public Product(String name, String price, String fabricator, Pokupatel[] pokupateli, int quantity, int count, int length) {
-        this.name = name;
-        this.price = price;
-        this.fabricator = fabricator;
-        this.pokupateli = pokupateli;
-        this.quantity = quantity;
-        this.count = count;
-        this.length = length;
-    }
-           
-
-    public Pokupatel[] getPokupateli() {
+         
+    public List<Pokupatel> getPokupateli() {
         return pokupateli;
     }
 
-    public void setPokupateli(Pokupatel[] pokupateli) {
+    public void setPokupateli(List<Pokupatel> pokupateli) {
         this.pokupateli = pokupateli;
     }
     
@@ -126,19 +116,6 @@ public class Product implements Serializable {
         this.length = length;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" 
-                + "name=" + name 
-                + ", price=" + price 
-                + ", fabricator=" + fabricator 
-                + ", pokupateli=" + Arrays.toString(pokupateli)
-                + ", quantity=" + quantity 
-                + ", count=" + count 
-                + ", length=" + length 
-                + '}';
-    }
-
     public Long getId() {
         return id;
     }
@@ -146,13 +123,24 @@ public class Product implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    
-    
 
-    
+    @Override
+    public String toString() {
+        return "Product{" 
+                + "id=" + id 
+                + ", name=" + name 
+                + ", price=" + price 
+                + ", fabricator=" + fabricator 
+                + ", pokupateli=" + pokupateli 
+                + ", quantity=" + quantity 
+                + ", count=" + count 
+                + ", length=" + length 
+                + '}';
+    }
 
-  
+    public Object getokupateli() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 
