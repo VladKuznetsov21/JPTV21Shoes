@@ -5,9 +5,7 @@
  */
 package managers;
 
-import entity.Pokupatel;
 import entity.Product;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -36,14 +34,17 @@ public class ProductManager {
     
     
 
-    public void printListProducts(List<Product> products) {
-        for (int i = 0; i < products.size(); i++) {
-            Product product = products.get(i);
-            if(product.getCount() < 1) continue;
+    public void printListProducts(Product[] products) {
+        for (int i = 0; i < products.length; i++) {
+            Product product = products[i];
+            if(product.getQuantity()< 1) continue;
             System.out.printf(i+1+". Product{name = %s%n}",product.getName());
         }
         System.out.println("");
     }
+
+
+
 
     
     

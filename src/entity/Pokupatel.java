@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 
-
 /**
  *
  * @author pupil
@@ -24,6 +23,7 @@ public class Pokupatel implements Serializable {
     private String lastname;
     private String phone;
     private String money;
+   
 
     public Pokupatel() {
     }
@@ -55,14 +55,13 @@ public class Pokupatel implements Serializable {
     public String getMoney() {
         return money;
     }
-   
+
     public void setMoney(String money) {
         int intMoney = Integer.parseInt(money);
         Integer fieldMoney = Integer.parseInt(money);
         fieldMoney += intMoney;
         this.money = fieldMoney.toString();
     }
-    
 
     public Long getId() {
         return id;
@@ -71,6 +70,8 @@ public class Pokupatel implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+   
 
     @Override
     public String toString() {
@@ -82,7 +83,7 @@ public class Pokupatel implements Serializable {
                 + ", money=" + money 
                 + '}';
     }
-
+    
     
 
 }

@@ -7,10 +7,14 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -20,10 +24,13 @@ import javax.persistence.Id;
 public class Purchase implements Serializable{
     @Id @GeneratedValue(strategy = IDENTITY)
     private Long id;
+    @OneToOne()
     private Pokupatel pokupatel;
+    @OneToOne()
     private Product product;
-    private Date date;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date TakeOnProduct;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date ReturnProduct;
     private int quantity;
 
@@ -45,14 +52,6 @@ public class Purchase implements Serializable{
 
     public void setPokupatel(Pokupatel pokupatel) {
         this.pokupatel = pokupatel;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public Date getTakeOnProduct() {
@@ -93,7 +92,6 @@ public class Purchase implements Serializable{
                 + "id=" + id 
                 + ", pokupatel=" + pokupatel 
                 + ", product=" + product 
-                + ", date=" + date 
                 + ", TakeOnProduct=" + TakeOnProduct 
                 + ", ReturnProduct=" + ReturnProduct 
                 + ", quantity=" + quantity 

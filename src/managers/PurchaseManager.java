@@ -5,14 +5,13 @@
  */
 package managers;
 
-import entity.Market;
+
 import entity.Pokupatel;
 import entity.Product;
 import entity.Purchase;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -22,7 +21,7 @@ import java.util.Scanner;
 public class PurchaseManager {
     private final Scanner scanner = new Scanner(System.in);
     
-    public Purchase buyProduct(List<Product> products, List<Pokupatel> pokupateli){
+    public Purchase buyProduct(Product[] products, Pokupatel[] pokupateli){
         Purchase purchase = new Purchase();
         System.out.println("Список покупателей: ");
         PokupatelManager pokupatelManager = new PokupatelManager();
@@ -39,26 +38,27 @@ public class PurchaseManager {
         System.out.print("Выберите колличество продукта: ");
         int quantity = scanner.nextInt(); scanner.nextLine();
         
-        purchase.setProduct(products.get(numberProduct - 1));
-        purchase.setPokupatel(pokupateli.get(numberPokupatel - 1));
+        purchase.setProduct(products[numberProduct - 1]);
+        purchase.setPokupatel(pokupateli[numberPokupatel - 1]);
         purchase.setQuantity(quantity);
-        purchase.setDate(new GregorianCalendar().getTime());
+        purchase.setTakeOnProduct(new GregorianCalendar().getTime());
         return purchase;
     }
 
-    public void printListTakeOnProducts(List<Purchase> purchases){
+    public void printListTakeOnProducts(Purchase[] purchases){
+       
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        for (int i = 0; i < purchases.size(); i++) {
-            if(purchases.get(i).getReturnProduct() == null && purchases.get(i).getTakeOnProduct() != null){
+        for (int i = 0; i < purchases.length; i++) {
+            if(purchases[i].getReturnProduct() == null && purchases[i].getTakeOnProduct() != null){
                 try {
                     System.out.printf("%d. %s. Выдана: %s. Продукт взят: %s %s%n"
                         ,i+1
-                        ,purchases.get(i).getProduct().getName()
-                        ,sdf.format(purchases.get(i).getTakeOnProduct())
-                        ,purchases.get(i).getPokupatel().getFirstname()
-                        ,purchases.get(i).getPokupatel().getLastname()
-                        ,purchases.get(i).getPokupatel().getPhone()
-                        ,purchases.get(i).getPokupatel().getMoney()
+                        ,purchases[i].getProduct().getName()
+                        ,sdf.format(purchases[i].getTakeOnProduct())
+                        ,purchases[i].getPokupatel().getFirstname()
+                        ,purchases[i].getPokupatel().getLastname()
+                        ,purchases[i].getPokupatel().getPhone()
+                        ,purchases[i].getPokupatel().getMoney()
                     );
                 } catch (Exception e) {
                     System.out.println("Неправильный формат даты!");
@@ -68,14 +68,16 @@ public class PurchaseManager {
             }
         }
     }
-    public void marketCashList(List<Purchase> purchases) {
+    public void marketCashList(Purchase[] purchases) {
         int sum = 0;
-        for(int i = 0; i < purchases.size(); i++){
-            Purchase purchase = purchases.get(i);
+        for(int i = 0; i < purchases.length; i++){
+            Purchase purchase = purchases[i];
             sum = sum + Integer.parseInt(purchase.getProduct().getPrice()) * purchase.getQuantity();
         } 
         System.out.println("Оборот: "+sum);
     }
+
+    
 
     
 

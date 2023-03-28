@@ -6,7 +6,7 @@
     <class>entity.Product</class>
     <class>entity.Purchase</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jptv21shoes_kuznetsov?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jptv21shoes_kuznetsov?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;caracterEncoding=utf8"/>
       <property name="javax.persistence.jdbc.user" value="jptv21shoes_kuznetsov"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="jptv21shoes_kuznetsov"/>

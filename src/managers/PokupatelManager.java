@@ -6,7 +6,6 @@
 package managers;
 
 import entity.Pokupatel;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -29,9 +28,9 @@ public class PokupatelManager {
         return pokupatel;
     }
     
-    public void printListPokupateli(List<Pokupatel> pokupateli) {
-        for (int i = 0; i < pokupateli.size(); i++) {
-            Pokupatel pokupatel = pokupateli.get(i);
+    public void printListPokupateli(Pokupatel[] pokupateli) {
+        for (int i = 0; i < pokupateli.length; i++) {
+            Pokupatel pokupatel = pokupateli[i];
             System.out.printf(i+1+".%s %s %s %s%n"
                     ,pokupatel.getFirstname()
                     ,pokupatel.getLastname()
@@ -42,18 +41,17 @@ public class PokupatelManager {
         }
     }
     
-    public List<Pokupatel> AddMoneyPokupatel(List<Pokupatel> pokupateli){
+    public Pokupatel[] AddMoneyPokupatel(Pokupatel[] pokupateli){
         System.out.println("Список покупателей");
         printListPokupateli(pokupateli);
         System.out.print("Добавить денег покупателю номер: ");
         int numberPokupatel = scanner.nextInt();scanner.nextLine();
         System.out.println("Введите количество денег: ");
-        pokupateli.get(numberPokupatel - 1).setMoney(scanner.nextLine());
+        pokupateli[numberPokupatel - 1].setMoney(scanner.nextLine());
         
         return pokupateli;
     }    
 
     
-
     
 }

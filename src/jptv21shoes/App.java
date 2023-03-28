@@ -5,15 +5,12 @@
  */
 package jptv21shoes;
 
-import entity.Market;
+
 import entity.Pokupatel;
 import entity.Product;
 import entity.Purchase;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import static javafx.beans.binding.Bindings.length;
-import static jdk.nashorn.internal.objects.ArrayBufferView.length;
 import managers.DataManager;
 import managers.PokupatelManager;
 import managers.ProductManager;
@@ -24,27 +21,31 @@ import managers.PurchaseManager;
  * @author pupil
  */
 public class App {
-    //private Product[] products;
-    private List<Product> products;
-    //private Pokupatel[] pokupateli;
-    private List<Pokupatel> pokupateli;
-    //private Purchase[] purchase;
-    private List<Purchase> purchases;
-    private Market[] markets;
+    
+    //private EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPTV21Shoes_KuznetsovPU");
+    //private EntityManager em = emf.createEntityManager();
+    //private EntityTransaction tx = em.getTransaction();
+    private Product[] products;
+    //private List<Product> products;
+    private Pokupatel[] pokupateli;
+    //private List<Pokupatel> pokupateli;
+    private Purchase[] purchases;
+  
     private final PokupatelManager pokupatelManager;
     private final PurchaseManager purchaseManager;
     private final ProductManager productManager;
-    private final DataManager dataManager;
-
+    private DataManager dataManager;
     
     public App() {
-    dataManager = new DataManager();  
-    this.products = dataManager.loadproducts();
-    this.pokupateli = dataManager.loadPokupateli();
-    this.purchases = dataManager.loadPurchases();
+    this.products = new Product[0];
+    this.pokupateli = new Pokupatel[0];
+    this.purchases = new Purchase[0];
     pokupatelManager = new PokupatelManager();
     productManager = new ProductManager();
     purchaseManager = new PurchaseManager();
+    dataManager = new DataManager();
+    
+    
    
 }
     
@@ -72,25 +73,24 @@ public class App {
                 case 2:
                     System.out.println("2. Добавить продукт");
                     // Добавляет продукт в список товароы маагзина 
-                    //this.products = Arrays.copyOf(this.products, this.products.length + 1);
-                    //this.products[this.products.length-1] = productManager.createProduct();
-                    
-                    products.add(productManager.createProduct());
-                    dataManager.saveProducs(products);
+                    this.products = Arrays.copyOf(this.products, this.products.length+1);
+                    Product product = productManager.createProduct();
+                    this.products[this.products.length-1] = product;
+                    dataManager.saveProduct(products);
                     break;
                 case 3:
                     System.out.println("3. Список продаваемых продуктов");
                     // Показывает список проданных товаров покупателю
                     productManager.printListProducts(products);
+                    
                     break;
                 case 4:
                     System.out.println("4. Добавить покупателя");
                     // Добавляет покупателя купившего продукт в списке магазина
-                    //this.pokupateli = Arrays.copyOf(this.pokupateli, this.pokupateli.length + 1);
-                    //this.pokupateli[this.pokupateli.length - 1] = pokupatelManager.createPokupatel();
-                    
-                    pokupateli.add(pokupatelManager.createPokupatel());
-                    dataManager.savePokupateli(pokupateli);
+                    this.pokupateli = Arrays.copyOf(this.pokupateli, this.pokupateli.length + 1);
+                    Pokupatel pokupatel = pokupatelManager.createPokupatel();
+                    this.pokupateli[this.pokupateli.length-1] = pokupatel;
+                    dataManager.savePokupatel(pokupateli);
                     break;
                 case 5:
                     System.out.println("5. Список зарегистрированных покупателей");
@@ -100,15 +100,16 @@ public class App {
                 case 6:
                     System.out.println("6. Покупка покупателем продукта");
                     // Покупатель покупает товар и с его счёта вычетаются денги
-                    //purchases = Arrays.copyOf(this.purchases, this.purchases.length + 1);
-                    //this.purchases(this.purchases.length - 1) = purchaseManager.buyProduct(products, pokupateli);
+                    this.purchases = Arrays.copyOf(this.purchases, this.purchases.length + 1);
+                    this.purchases[this.purchases.length - 1] = purchaseManager.buyProduct(products, pokupateli);
                     
-                    this.purchases.add(purchaseManager.buyProduct(products, pokupateli));
-                    dataManager.savePurchases(purchases);
+                    //this.purchases.add(purchaseManager.buyProduct(products, pokupateli));
+                    //dataManager.savePurchases(purchases);
                     break;
                 case 7:
                     System.out.println("7. Оборот магазина за все время работы");
                     purchaseManager.marketCashList(purchases);
+                    dataManager.savePurchase(purchases);
                     break;
                 case 8:
                     System.out.println("8. Добавить денег покупателю");
