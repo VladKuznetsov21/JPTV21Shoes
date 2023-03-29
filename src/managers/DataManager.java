@@ -3,14 +3,13 @@ package managers;
 import entity.Pokupatel;
 import entity.Product;
 import entity.Purchase;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 /*
@@ -24,49 +23,75 @@ import javax.persistence.Persistence;
  * @author pupil
  */
 public class DataManager {
+
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPTV21Shoes_KuznetsovPU");
+    private EntityManager em = emf.createEntityManager();
     
-    public void saveProduct(Product[] products){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPTV21Shoes_KuznetsovPU");
-        EntityManager em = emf.createEntityManager();
+    public void saveProducts(List<Product> products){
         em.getTransaction().begin();
-        for (int i = 0; i < products.length; i++) {
-            if(products[i].getId()==null){
-                em.persist(products[i]);
+        for (int i = 0; i < products.size(); i++) {
+            if(products.get(i).getId()==null){
+                em.persist(products.get(i));
             }else{
-                em.merge(products[i]);
+                em.merge(products.get(i));
             }
         }
         em.getTransaction().commit();
     
     }
+    public List<Product> loadProducts() {
+        try {
+            return em.createQuery("SELECT p FROM Product p")
+                    .getResultList();
+        } catch (Exception ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Неудалось загрузить книги", ex);
+            return new ArrayList<>();
+        }
+    }
     
-    public void savePokupatel(Pokupatel[] pokupateli){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPTV21Shoes_KuznetsovPU");
-        EntityManager em = emf.createEntityManager();
+    public void savePokupateli(List<Pokupatel> pokupateli){
         em.getTransaction().begin();
-        for (int i = 0; i < pokupateli.length; i++) {
-            if(pokupateli[i].getId()==null){
-                em.persist(pokupateli[i]);
+        for (int i = 0; i < pokupateli.size(); i++) {
+            if(pokupateli.get(i).getId()==null){
+                em.persist(pokupateli.get(i));
             }else{
-                em.merge(pokupateli[i]);
+                em.merge(pokupateli.get(i));
+            }
+        }
+        em.getTransaction().commit(); 
+    }
+    public List<Pokupatel> loadPokupateli() {
+        try {
+            return em.createQuery("SELECT p FROM Pokupatel p")
+                    .getResultList();
+        } catch (Exception ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Неудалось загрузить покупателя", ex);
+            return new ArrayList<>();
+        }
+    }
+    
+    public void savePurchases(List<Purchase> purchases){
+        em.getTransaction().begin();
+        for (int i = 0; i < purchases.size(); i++) {
+            if(purchases.get(i).getId()==null){
+                em.persist(purchases.get(i));
+            }else{
+                em.merge(purchases.get(i));
             }
         }
         em.getTransaction().commit();
-    
     }
-    
-    public void savePurchase(Purchase[] purchases){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPTV21Shoes_KuznetsovPU");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        for (int i = 0; i < purchases.length; i++) {
-            if(purchases[i].getId()==null){
-                em.persist(purchases[i]);
-            }else{
-                em.merge(purchases[i]);
-            }
+    public List<Purchase> loadPurchases() {
+        try {
+            return em.createQuery("SELECT p FROM Purchase p")
+                    .getResultList();
+        } catch (Exception ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Неудалось загрузить покупку", ex);
+            return new ArrayList<>();
         }
-        em.getTransaction().commit();
-    
     }
+
+    
+
+
 }
