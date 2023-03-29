@@ -39,6 +39,7 @@ public class App {
     
     public App() {
     scanner = new Scanner(System.in);
+    dataManager = new DataManager();
     //this.products = new Product[0];
     this.products = dataManager.loadProducts();
     //this.pokupateli = new Pokupatel[0];
@@ -48,7 +49,6 @@ public class App {
     pokupatelManager = new PokupatelManager();
     productManager = new ProductManager();
     purchaseManager = new PurchaseManager();
-    dataManager = new DataManager();
     
 }
     

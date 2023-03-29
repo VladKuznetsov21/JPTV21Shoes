@@ -39,7 +39,8 @@ public class ProductManager {
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
             if (product.getQuantity() < 1) continue;
-            System.out.printf(i+1+". Product{name = %s%n}",product.getName());
+            System.out.printf(i+1+". Product{name = %s}",product.getName());
+            System.out.println();
         }
         System.out.println("");
     }
